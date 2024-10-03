@@ -1,0 +1,6 @@
+@VatCalculator.Server_HostAddress = http://localhost:5139
+
+GET {{VatCalculator.Server_HostAddress}}/vatcalculator/
+Accept: application/json
+
+###
