@@ -5,7 +5,7 @@ namespace VatCalculator.Server.Controllers
     using VatCalculator.Server.Services.Interfaces;
 
     /// <summary>
-    /// VAT Calculator COntroller.
+    /// VAT Calculator Controller.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]

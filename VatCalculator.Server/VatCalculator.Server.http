@@ -1,6 +1,10 @@
-@VatCalculator.Server_HostAddress = http://localhost:5139
-
-GET {{VatCalculator.Server_HostAddress}}/vatcalculator/
+@VatCalculator.Server_HostAddress = http://localhost:5000
+POST {{VatCalculator.Server_HostAddress}}/api/VatCalculation/calculate
+Content-Type: application/json
 Accept: application/json
 
-###
+{
+  "amount": 100,
+  "type": 1,
+  "vatRate": 10
+}
