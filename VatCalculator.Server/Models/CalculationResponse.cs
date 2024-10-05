@@ -1,24 +1,23 @@
 ﻿namespace VatCalculator.Server.Models
 {
     /// <summary>
-    /// Calculation response model class.
+    /// Represents the response model for VAT calculations.
     /// </summary>
     public class CalculationResponse
     {
         /// <summary>
-        /// Gets or sets Net Amount.
+        /// Gets or sets the calculated net amount.
         /// </summary>
         public decimal NetAmount { get; set; }
 
         /// <summary>
-        /// Gets or sets Gross Amount.
+        /// Gets or sets the calculated gross amount.
         /// </summary>
         public decimal GrossAmount { get; set; }
 
         /// <summary>
-        /// Gets or sets VAT Amount.
+        /// Gets or sets the calculated VAT amount.
         /// </summary>
         public decimal VatAmount { get; set; }
     }
-
 }

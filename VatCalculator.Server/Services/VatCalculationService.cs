@@ -5,15 +5,15 @@ using VatCalculator.Server.Services.Interfaces;
 namespace VatCalculator.Server.Services
 {
     /// <summary>
-    /// Implementation of VAT Calculation service.
+    /// Implementation of VAT calculation service.
     /// </summary>
     public class VatCalculationService : IVatCalculationService
     {
         /// <summary>
-        /// Calcualates amounts.
+        /// Calculates the net, gross, and VAT amounts based on the input request parameters.
         /// </summary>
-        /// <param name="request">Calculation input parameters.</param>
-        /// <returns>Object with calculation results.</returns>
+        /// <param name="request">The input parameters for the calculation, including amount, amount type, and VAT rate.</param>
+        /// <returns>A <see cref="CalculationResponse"/> object containing the calculated net, gross, and VAT amounts.</returns>
         public CalculationResponse CalculateAmounts(CalculationRequest request)
         {
             // Validate VAT rate
