@@ -39,18 +39,21 @@ namespace VatCalculator.Server.Services
             switch (request.Type)
             {
                 case AmountType.Net:
-                    vatAmount = request.Amount * vatRateDecimal;
-                    grossAmount = request.Amount + vatAmount;
+                    netAmount = request.Amount;
+                    vatAmount = netAmount * vatRateDecimal;
+                    grossAmount = netAmount + vatAmount;
                     break;
 
                 case AmountType.Gross:
-                    netAmount = request.Amount / (1 + vatRateDecimal);
-                    vatAmount = request.Amount - netAmount;
+                    grossAmount = request.Amount;
+                    netAmount = grossAmount / (1 + vatRateDecimal);
+                    vatAmount = grossAmount - netAmount;
                     break;
 
                 case AmountType.Vat:
-                    netAmount = request.Amount / vatRateDecimal;
-                    grossAmount = request.Amount + vatAmount;
+                    vatAmount = request.Amount;
+                    netAmount = vatAmount / vatRateDecimal;
+                    grossAmount = netAmount + vatAmount;
                     break;
 
                 default:
