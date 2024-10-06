@@ -169,7 +169,7 @@ namespace VatCalculator.Tests
                 Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
                 var errorResponse = await response.Content.ReadAsStringAsync();
-                StringAssert.Contains(errorResponse, "VAT amount must be greater than zero.");
+                StringAssert.Contains(errorResponse, "Vat amount must be greater than zero.");
             }
         }
     }
