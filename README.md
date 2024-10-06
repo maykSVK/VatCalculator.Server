@@ -31,7 +31,7 @@ This repository contains the server-side code for the VAT Calculator web applica
    - In Visual Studio, click on **Build** > **Build Solution** or press `Ctrl+Shift+B`.
 
 4. Run the server:
-   - Set VatCalculatr.Server project as a startu project. 
+   - Set VatCalculator.Server project as a startu project. 
    - Click the **IIS Express** or **Start Debugging (F5)** button at the top of Visual Studio.
    - The server should now be running, and the API will be accessible at `http://localhost:5000`.
 
