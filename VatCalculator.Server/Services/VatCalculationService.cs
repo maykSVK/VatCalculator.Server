@@ -1,4 +1,5 @@
-﻿using VatCalculator.Server.Enums;
+﻿using VatCalculator.Server.Calculators;
+using VatCalculator.Server.Enums;
 using VatCalculator.Server.Models;
 using VatCalculator.Server.Services.Interfaces;
 
@@ -29,36 +30,11 @@ namespace VatCalculator.Server.Services
             }
 
             // Convert VAT rate from percentage to decimal
-            decimal vatRateDecimal = request.VatRate / 100m;
+            var vatRateDecimal = request.VatRate / 100m;
 
-            decimal netAmount = 0m;
-            decimal grossAmount = 0m;
-            decimal vatAmount = 0m;
-
-            // Perform calculations based on the provided amount and type
-            switch (request.Type)
-            {
-                case AmountType.Net:
-                    netAmount = request.Amount;
-                    vatAmount = netAmount * vatRateDecimal;
-                    grossAmount = netAmount + vatAmount;
-                    break;
-
-                case AmountType.Gross:
-                    grossAmount = request.Amount;
-                    netAmount = grossAmount / (1 + vatRateDecimal);
-                    vatAmount = grossAmount - netAmount;
-                    break;
-
-                case AmountType.Vat:
-                    vatAmount = request.Amount;
-                    netAmount = vatAmount / vatRateDecimal;
-                    grossAmount = netAmount + vatAmount;
-                    break;
-
-                default:
-                    throw new ArgumentException("Invalid amount type provided.");
-            }
+            // Get the appropriate calculator based on the amount type
+            var calculator = AmountCalculatorFactory.GetCalculator(request.Type);
+            calculator.CalculateAmounts(request.Amount, vatRateDecimal, out decimal netAmount, out decimal grossAmount, out decimal vatAmount);
 
             // Round amounts to two decimal places
             return new CalculationResponse
