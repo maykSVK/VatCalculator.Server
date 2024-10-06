@@ -63,3 +63,6 @@ Example request:
 - The API will return a 400 error if:
   - The VAT rate is missing or invalid.
   - The amount is missing, zero, or non-numeric.
+    
+## Author
+- [Michal Matloň](https://matlon.sk)
