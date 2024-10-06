@@ -10,12 +10,6 @@ This repository contains the server-side code for the VAT Calculator web applica
 - Returns meaningful error messages for invalid or missing inputs.
 - Supports communication with the client via RESTful API.
 
-## Technologies Used
-
-- .NET Core for the server-side application.
-- ASP.NET Web API for RESTful services.
-- CORS configuration to allow communication with the client.
-
 ## Installation and Setup
 
 ### Prerequisites
