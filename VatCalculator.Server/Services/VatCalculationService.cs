@@ -16,11 +16,16 @@ namespace VatCalculator.Server.Services
         /// <returns>A <see cref="CalculationResponse"/> object containing the calculated net, gross, and VAT amounts.</returns>
         public CalculationResponse CalculateAmounts(CalculationRequest request)
         {
-            // Validate VAT rate
+            // Validations
             var validVatRates = new List<decimal> { 10m, 13m, 20m };
             if (!validVatRates.Contains(request.VatRate))
             {
                 throw new ArgumentException("Invalid VAT rate. Valid rates are 10%, 13%, and 20%.");
+            }
+
+            if (request.Amount <= 0)
+            {
+                throw new ArgumentException($"{request.Type} amount must be greater than zero.");
             }
 
             // Convert VAT rate from percentage to decimal
@@ -34,36 +39,18 @@ namespace VatCalculator.Server.Services
             switch (request.Type)
             {
                 case AmountType.Net:
-                    netAmount = request.Amount;
-                    if (netAmount <= 0)
-                    {
-                        throw new ArgumentException("Net amount must be greater than zero.");
-                    }
-
-                    vatAmount = netAmount * vatRateDecimal;
-                    grossAmount = netAmount + vatAmount;
+                    vatAmount = request.Amount * vatRateDecimal;
+                    grossAmount = request.Amount + vatAmount;
                     break;
 
                 case AmountType.Gross:
-                    grossAmount = request.Amount;
-                    if (grossAmount <= 0)
-                    {
-                        throw new ArgumentException("Gross amount must be greater than zero.");
-                    }
-
-                    netAmount = grossAmount / (1 + vatRateDecimal);
-                    vatAmount = grossAmount - netAmount;
+                    netAmount = request.Amount / (1 + vatRateDecimal);
+                    vatAmount = request.Amount - netAmount;
                     break;
 
                 case AmountType.Vat:
-                    vatAmount = request.Amount;
-                    if (vatAmount <= 0)
-                    {
-                        throw new ArgumentException("VAT amount must be greater than zero.");
-                    }
-
-                    netAmount = vatAmount / vatRateDecimal;
-                    grossAmount = netAmount + vatAmount;
+                    netAmount = request.Amount / vatRateDecimal;
+                    grossAmount = request.Amount + vatAmount;
                     break;
 
                 default:
